@@ -1,7 +1,8 @@
 # src/mcp_server/handlers/resources/file_resource.py
 from mcp.server.fastmcp import FastMCP
-from mcp.types import McpError, ErrorCode
+from mcp.shared.exceptions import McpError
 import aiofiles
+from pathlib import Path
 
 def register(mcp: FastMCP) -> None:
 
@@ -12,7 +13,7 @@ def register(mcp: FastMCP) -> None:
         allowed_root = Path("/data/files").resolve()
 
         if not safe_path.is_relative_to(allowed_root):
-            raise McpError(ErrorCode.INVALID_PARAMS, "Access denied")
+            raise McpError(-32603, "Access denied")
 
         async with aiofiles.open(safe_path) as f:
             return await f.read()

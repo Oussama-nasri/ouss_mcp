@@ -1,7 +1,7 @@
 # src/mcp_server/handlers/tools/search.py
 import structlog
 from mcp.server.fastmcp import FastMCP
-from mcp.types import McpError, ErrorCode
+from mcp.shared.exceptions import McpError
 from pydantic import BaseModel, Field
 from ...services.search_service import SearchService
 
@@ -26,4 +26,4 @@ def register(mcp: FastMCP) -> None:
         except Exception as e:
             log.error("tool.search.failed", error=str(e))
             # Never leak internal errors to the LLM
-            raise McpError(ErrorCode.INTERNAL_ERROR, "Search failed. Please try again.")
+            raise McpError(-32603, "Search failed. Please try again.")

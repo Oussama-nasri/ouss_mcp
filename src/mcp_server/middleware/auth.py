@@ -1,6 +1,6 @@
 # src/mcp_server/middleware/auth.py
 import hmac
-from mcp.types import McpError, ErrorCode
+from mcp.shared.exceptions import McpError
 from ..config import settings
 
 async def verify_api_key(token: str) -> None:
@@ -8,4 +8,4 @@ async def verify_api_key(token: str) -> None:
     provided = token.encode()
     # Constant-time comparison — prevents timing attacks
     if not hmac.compare_digest(expected, provided):
-        raise McpError(ErrorCode.INVALID_REQUEST, "Unauthorized")
+        raise McpError(-32603, "Unauthorized")
