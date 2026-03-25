@@ -1,10 +1,9 @@
-import asyncio
 from mcp.server.fastmcp import FastMCP
-from .config import settings
-from .handlers.tools import search, calculator
-from .handlers.resources import file_resource
-from .handlers.prompts import summarize_prompt
-from .middleware.logging import configure_logging
+from src.mcp_server.config import settings
+from src.mcp_server.handlers.tools import search, calculator
+from src.mcp_server.handlers.resources import file_resource
+from src.mcp_server.handlers.prompts import summarize_prompt
+from src.mcp_server.middleware.logging import configure_logging
 
 configure_logging(settings.log_level)
 

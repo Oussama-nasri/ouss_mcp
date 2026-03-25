@@ -1,4 +1,3 @@
-# src/mcp_server/config.py
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -22,5 +21,5 @@ class Settings(BaseSettings):
             raise ValueError("API key must be at least 32 characters")
         return v
 
-# Singleton — imported everywhere
+
 settings = Settings()

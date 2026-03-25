@@ -3,7 +3,7 @@ import structlog
 from mcp.server.fastmcp import FastMCP
 from mcp.shared.exceptions import McpError
 from pydantic import BaseModel, Field
-from ...services.search_service import SearchService
+from src.mcp_server.services.search_service import SearchService
 
 log = structlog.get_logger(__name__)
 
