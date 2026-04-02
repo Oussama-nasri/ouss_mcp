@@ -9,6 +9,7 @@ from ...middleware.rate_limiter import rate_limiter
 log = structlog.get_logger(__name__)
 
 
+
 class CalculatorInput(BaseModel):
     expression: str = Field(
         ...,
