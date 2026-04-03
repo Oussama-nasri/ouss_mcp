@@ -10,6 +10,7 @@ sse = SseServerTransport("/messages/")
 
 tracer = VizTracer(output_file="mcp_trace.json")
 
+
 # ✅ RAW ASGI HANDLER (not FastAPI route)
 async def sse_app(scope: Scope, receive: Receive, send: Send):
     with tracer:
