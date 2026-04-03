@@ -79,11 +79,10 @@ async def main() -> None:
                     "text": "MCP lets LLMs talk to tools.",
                     "style": "tldr",
                 })
-                ok("summarize prompt", f"{len(result.messages)} message(s)")
+                ok("summarize prompt", f"{result.messages} message(s)")
             except Exception as e:
                 fail("summarize prompt", e)
 
-    print()
 
 
 asyncio.run(main())

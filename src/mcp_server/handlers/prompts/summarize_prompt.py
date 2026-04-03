@@ -49,7 +49,7 @@ def register(mcp: FastMCP) -> None:
             "tldr": (
                 "Write a single TL;DR sentence (max 30 words) capturing the core message."
             ),
-        }[style]
+                }[style]
 
         system_prompt = (
             f"You are an expert summarizer. Always respond in {language}. "
