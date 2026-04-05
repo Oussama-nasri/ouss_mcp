@@ -1,3 +1,8 @@
+To make this easy for you to copy, I have wrapped the entire updated `README.md` content in a single Markdown code block. 
+
+I've also integrated the `viztracer` instructions as a core part of the development workflow.
+
+```markdown
 # MCP Server — Python
 
 A production-ready Model Context Protocol server built with Python, FastMCP, Pydantic v2, and Docker.
@@ -6,7 +11,7 @@ A production-ready Model Context Protocol server built with Python, FastMCP, Pyd
 
 ```bash
 # 1. Clone and enter the project
-git clone https://github.com/you/mcp-server && cd mcp-server
+git clone [https://github.com/Oussama-nasri/ouss_mcp](https://github.com/Oussama-nasri/ouss_mcp) && cd ouss_mcp
 
 # 2. Copy and fill in your environment variables
 cp .env.example .env
@@ -78,6 +83,36 @@ uv run pytest tests/integration/       # integration tests only
 uv run pytest --cov=src               # with coverage
 ```
 
+## Tracing & Performance Visualization
+
+Use `viztracer` to debug latency and visualize the execution flow of your MCP handlers and async tasks.
+
+### 1. Generate a Trace
+Run the server through the tracer with the `--log_async` flag to capture the event loop correctly:
+
+```bash
+# Start the server with tracing enabled
+viztracer --log_async -o mcp_trace.json start_mcp.py
+```
+
+### 2. Execute Workload
+While the server is running, execute your test client or automated tests in a separate terminal:
+
+```bash
+python src/mcp_client/test_mcp.py
+```
+
+### 3. Save and View
+1. Return to the server terminal and press **`Ctrl+C`**.
+2. Wait for the message `Saving trace data to disk...`.
+3. Open the interactive Chrome-based viewer:
+
+```bash
+vizviewer mcp_trace.json
+```
+
+> **Navigation Tips:** Use `W/S` to zoom in/out, `A/D` to move left/right, and `F` to zoom to fit the entire trace.
+
 ## Docker deployment
 
 ```bash
@@ -99,7 +134,7 @@ docker compose down
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin nginx certbot python3-certbot-nginx
 
 # Clone the repo
-sudo git clone https://github.com/you/mcp-server /opt/mcp-server
+sudo git clone [https://github.com/Oussama-nasri/ouss_mcp](https://github.com/Oussama-nasri/ouss_mcp) /opt/ouss_server
 sudo cp /opt/mcp-server/.env.example /opt/mcp-server/.env
 # Fill in /opt/mcp-server/.env
 
@@ -136,3 +171,4 @@ sudo systemctl reload nginx
 2. Create `src/mcp_server/handlers/tools/my_tool.py` with a `register(mcp)` function.
 3. Import and call `my_tool.register(mcp)` in `server.py`.
 4. Write tests in `tests/unit/test_my_service.py`.
+```

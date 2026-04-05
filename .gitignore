@@ -36,3 +36,4 @@ docker/data/
 
 # uv
 uv.lock
+mcp_trace.json
